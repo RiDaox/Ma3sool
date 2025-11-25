@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
+@import "tailwindcss";
+
+:root {
+  font-family: 'Tajawal', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 50%, #FCD34D 100%);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Honey gradient background */
+.honey-gradient {
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 30%, #FCD34D 60%, #F59E0B 100%);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FEF3C7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #F59E0B;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D97706;
+}
+
+/* Smooth transitions */
+.smooth-transition {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
