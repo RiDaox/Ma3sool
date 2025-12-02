@@ -7,9 +7,9 @@ import React, { useRef, useEffect } from 'react'
 import { useGLTF } from '@react-three/drei'
 import gsap from 'gsap'
 
-export default function LemonCell(props) {
+export default function BlueberryCell(props) {
   const group = useRef()
-  const { nodes, materials } = useGLTF('/models/lemon_cell.glb')
+  const { nodes, materials } = useGLTF('/models/blueberry_cell.glb')
 
   // GSAP entrance animation
   useEffect(() => {
@@ -40,12 +40,20 @@ export default function LemonCell(props) {
   return (
     <group ref={group} {...props} dispose={null}>
       <mesh
-        geometry={nodes.tripo_node_670ffcc4.geometry}
-        material={materials.tripo_mat_670ffcc4}
+        geometry={nodes['tripo_node_d25015c9-98eb-477f-8d74-8bf4850dadfb'].geometry}
+        material={materials['tripo_material_d25015c9-98eb-477f-8d74-8bf4850dadfb']}
+        position={[-0.03, 0.11, 0]}
+        rotation={[-2.68, 0.86, 2.92]}
+        scale={[1, 1.03, 1]}
+      />
+      <mesh
+        geometry={nodes.tripo_node_59b2f49f.geometry}
+        material={materials.tripo_mat_59b2f49f}
+        position={[0, 0.07, 0]}
         rotation={[-Math.PI / 2, 0, 0]}
       />
     </group>
   )
 }
 
-useGLTF.preload('/models/lemon_cell.glb')
+useGLTF.preload('/models/blueberry_cell.glb')

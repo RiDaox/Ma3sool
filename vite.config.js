@@ -8,4 +8,7 @@ export default defineConfig({
     react(),
     tailwindcss(), // هذا يكفي!
   ],
+  server: {
+    host: true, // كيسمح بالدخول من الشبكة (التيليفون)
+  },
 })

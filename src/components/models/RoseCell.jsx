@@ -7,9 +7,9 @@ import React, { useRef, useEffect } from 'react'
 import { useGLTF } from '@react-three/drei'
 import gsap from 'gsap'
 
-export default function LemonCell(props) {
+export default function RoseCell(props) {
   const group = useRef()
-  const { nodes, materials } = useGLTF('/models/lemon_cell.glb')
+  const { nodes, materials } = useGLTF('/models/rose_cell.glb')
 
   // GSAP entrance animation
   useEffect(() => {
@@ -40,12 +40,12 @@ export default function LemonCell(props) {
   return (
     <group ref={group} {...props} dispose={null}>
       <mesh
-        geometry={nodes.tripo_node_670ffcc4.geometry}
-        material={materials.tripo_mat_670ffcc4}
+        geometry={nodes.tripo_node_e08faa72.geometry}
+        material={materials.tripo_mat_e08faa72}
         rotation={[-Math.PI / 2, 0, 0]}
       />
     </group>
   )
 }
 
-useGLTF.preload('/models/lemon_cell.glb')
+useGLTF.preload('/models/rose_cell.glb')

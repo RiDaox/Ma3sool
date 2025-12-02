@@ -2,28 +2,34 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 
 export default function LoadingScreen({ onComplete }) {
-  const [progress, setProgress] = useState(0);
+  const [displayProgress, setDisplayProgress] = useState(0);
   const containerRef = useRef(null);
   const textRef = useRef(null);
   const curtainRef = useRef(null);
 
   useEffect(() => {
-    // Counter Animation
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          return 100;
-        }
-        return prev + 1;
-      });
-    }, 20); // 2 seconds total
+    // Simulate loading progress with a timer
+    const duration = 2000; // 2 seconds
+    const interval = 50; // Update every 50ms
+    const steps = duration / interval;
+    const increment = 100 / steps;
+    let currentProgress = 0;
 
-    return () => clearInterval(interval);
+    const timer = setInterval(() => {
+      currentProgress += increment;
+      if (currentProgress >= 100) {
+        setDisplayProgress(100);
+        clearInterval(timer);
+      } else {
+        setDisplayProgress(Math.floor(currentProgress));
+      }
+    }, interval);
+
+    return () => clearInterval(timer);
   }, []);
 
   useEffect(() => {
-    if (progress === 100) {
+    if (displayProgress === 100) {
       const tl = gsap.timeline();
 
       // 1. Text Scale Up & Fade Out
@@ -50,7 +56,7 @@ export default function LoadingScreen({ onComplete }) {
           }
         });
     }
-  }, [progress, onComplete]);
+  }, [displayProgress, onComplete]);
 
   return (
     <div ref={containerRef} className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden">
@@ -67,7 +73,7 @@ export default function LoadingScreen({ onComplete }) {
           HONEYVERSE
         </h1>
         <div className="mt-4 text-amber-900 font-mono text-xl">
-          {progress}%
+          {displayProgress}%
         </div>
       </div>
     </div>

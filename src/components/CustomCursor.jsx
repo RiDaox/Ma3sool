@@ -5,26 +5,42 @@ export default function CustomCursor() {
     const cursorRef = useRef(null);
     const followerRef = useRef(null);
     const [isHovering, setIsHovering] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    useEffect(() => {
+        if (isMobile) return;
+
         // Move cursor logic
         const onMouseMove = (e) => {
             const { clientX, clientY } = e;
 
             // Main dot follows instantly
-            gsap.to(cursorRef.current, {
-                x: clientX,
-                y: clientY,
-                duration: 0,
-            });
+            if (cursorRef.current) {
+                gsap.to(cursorRef.current, {
+                    x: clientX,
+                    y: clientY,
+                    duration: 0,
+                });
+            }
 
             // Follower follows with lag (smoothness)
-            gsap.to(followerRef.current, {
-                x: clientX,
-                y: clientY,
-                duration: 0.6,
-                ease: 'power3.out'
-            });
+            if (followerRef.current) {
+                gsap.to(followerRef.current, {
+                    x: clientX,
+                    y: clientY,
+                    duration: 0.6,
+                    ease: 'power3.out'
+                });
+            }
         };
 
         // Hover detection logic
@@ -47,10 +63,12 @@ export default function CustomCursor() {
             window.removeEventListener('mouseover', onMouseOver);
             window.removeEventListener('mouseout', onMouseOut);
         };
-    }, []);
+    }, [isMobile]);
 
     // Hover animation
     useEffect(() => {
+        if (isMobile || !followerRef.current) return;
+
         if (isHovering) {
             gsap.to(followerRef.current, {
                 scale: 3,
@@ -66,7 +84,9 @@ export default function CustomCursor() {
                 duration: 0.3
             });
         }
-    }, [isHovering]);
+    }, [isHovering, isMobile]);
+
+    if (isMobile) return null;
 
     return (
         <>

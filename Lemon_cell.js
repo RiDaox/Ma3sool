@@ -7,17 +7,16 @@ import { useGLTF } from '@react-three/drei'
 
 export default function Model(props) {
   const group = useRef()
-  const { nodes, materials } = useGLTF('/models/lemon_cell.glb')
+  const { nodes, materials } = useGLTF('/lemon_cell.glb')
   return (
     <group ref={group} {...props} dispose={null}>
       <mesh
-        geometry={nodes.tripo_node_888b3cfa.geometry}
-        material={materials.tripo_mat_888b3cfa}
-        position={[1.06, 0, -0.57]}
+        geometry={nodes.tripo_node_670ffcc4.geometry}
+        material={materials.tripo_mat_670ffcc4}
         rotation={[-Math.PI / 2, 0, 0]}
       />
     </group>
   )
 }
 
-useGLTF.preload('/models/lemon_cell.glb')
+useGLTF.preload('/lemon_cell.glb')
