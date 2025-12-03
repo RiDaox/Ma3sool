@@ -1,4 +1,4 @@
-import { Canvas, useThree } from '@react-three/fiber';
+import { Canvas } from '@react-three/fiber';
 import { Environment } from '@react-three/drei';
 import { Suspense, useRef, useState, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
@@ -8,7 +8,6 @@ import BlueberryCell from '../components/models/BlueberryCell';
 import ThymeCell from '../components/models/ThymeCell';
 import DaghmousCell from '../components/models/DaghmousCell';
 import RoseCell from '../components/models/RoseCell';
-import gsap from 'gsap';
 import * as THREE from 'three';
 
 // Animated Cell Group - Rotates based on global rotation

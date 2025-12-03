@@ -5,8 +5,6 @@ import gsap from 'gsap';
 export default function TransitionOverlay() {
     const overlayRef = useRef();
     const isTransitioning = useStore((state) => state.isTransitioning);
-    const selectedHoneyType = useStore((state) => state.selectedHoneyType);
-    const honeyTypes = useStore((state) => state.honeyTypes) || []; // Fallback if not in store yet, but we import data usually
 
     // We need to get the color of the selected honey. 
     // Since honeyTypes might not be in store, we'll import them or pass them.

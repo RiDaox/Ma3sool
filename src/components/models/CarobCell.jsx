@@ -14,11 +14,9 @@ export default function CarobCell(props) {
   // GSAP entrance animation
   useEffect(() => {
     if (group.current) {
-      // Start invisible and scaled down
       gsap.set(group.current.scale, { x: 0, y: 0, z: 0 });
       gsap.set(group.current.position, { y: -5 });
 
-      // Animate in with bounce
       gsap.to(group.current.scale, {
         x: props.scale || 1,
         y: props.scale || 1,
